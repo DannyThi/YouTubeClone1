@@ -17,12 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Set up the window programattically
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
         
-        let navController = UINavigationController(rootViewController: HomeViewController())
+        let viewController = HomeViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let navController = UINavigationController(rootViewController: viewController)
         window?.rootViewController = navController
-        // make navigation controller
         
+        window?.makeKeyAndVisible()
         return true
     }
 
