@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        // Set up the window programattically
+        // Set up the window programatically
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let viewController = HomeViewController(collectionViewLayout: UICollectionViewFlowLayout())

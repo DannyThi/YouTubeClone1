@@ -26,7 +26,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath)
         
-        cell.backgroundColor = UIColor.red
+        //cell.backgroundColor = UIColor.red
         return cell
     }
     
@@ -36,6 +36,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         return CGSize(width: UIScreen.main.bounds.width, height: 200)
     }
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 
 }
-
