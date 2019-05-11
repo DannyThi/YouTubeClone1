@@ -14,12 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
         // Set up the window programatically
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let viewController = HomeViewController(collectionViewLayout: UICollectionViewFlowLayout())
         let navController = UINavigationController(rootViewController: viewController)
+        
+        navController.navigationBar.barTintColor = UIColor.rbg(red: 230, green: 32, blue: 31)
+        navController.navigationBar.isTranslucent = false
+        navController.navigationBar.barStyle = .black
+        
         window?.rootViewController = navController
         
         window?.makeKeyAndVisible()

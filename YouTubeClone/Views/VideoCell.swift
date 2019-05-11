@@ -12,15 +12,17 @@ class VideoCell: UICollectionViewCell {
     
     let thumbnailImageView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor.blue
+        view.image = UIImage(named: "taylor_swift_blank_space")
+        view.clipsToBounds = true
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
     let userProfileImageView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = UIColor.green
-        view.layer.cornerRadius = view.bounds.width / 2
-        view.clipsToBounds = false
+        view.image = UIImage(named: "taylor_swift_profile")
+        view.layer.cornerRadius = 22 // this is instantiated so we cannot use view.bounds.width / 2 yet.
+        view.layer.masksToBounds = true
         return view
     }()
     
@@ -34,15 +36,17 @@ class VideoCell: UICollectionViewCell {
     
     let subtitleTextView: UITextView = {
         let view = UITextView()
-        //view.backgroundColor = UIColor.red
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "Subtitle text goes here."
+        view.text = "Subtitle text goes here. Over 9000 views. Released: 6 years ago."
+        view.isEditable = false
+        view.textColor = .gray
+        view.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
         return view
     }()
     
     let seperatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = UIColor.lightGray
         
         return view
     }()
@@ -81,7 +85,7 @@ class VideoCell: UICollectionViewCell {
         // Subtitle Text View
         addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .top, relatedBy: .equal,
                                          toItem: titleLabel, attribute: .bottom,
-                                         multiplier: 1, constant: 8))
+                                         multiplier: 1, constant: 4))
         addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .leading, relatedBy: .equal,
                                          toItem: titleLabel, attribute: .leading,
                                          multiplier: 1, constant: 0))
@@ -90,7 +94,7 @@ class VideoCell: UICollectionViewCell {
                                          multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .height, relatedBy: .equal,
                                          toItem: contentView, attribute: .height,
-                                         multiplier: 0, constant: 20))
+                                         multiplier: 0, constant: 30))
         
         // Seperator View
         addConstraints(withVisualFormat: "H:|[v0]|", views: seperatorView)
@@ -98,7 +102,7 @@ class VideoCell: UICollectionViewCell {
         // Vertical Spacing
         addConstraints(withVisualFormat: "V:|-16-[v0]-8-[v1(44)]-16-[v2(1)]|",
                        views: thumbnailImageView, userProfileImageView, seperatorView)
-
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -106,20 +110,3 @@ class VideoCell: UICollectionViewCell {
     }
 }
 
-extension UIView {
-    func addConstraints(withVisualFormat format: String, views: UIView...) {
-
-        var viewsDictionary = [String : UIView]()
-        for (index, view) in views.enumerated() {
-            let key = "v\(index)"
-            view.translatesAutoresizingMaskIntoConstraints = false
-            viewsDictionary[key] = view
-        }
-        
-        let constraint = NSLayoutConstraint.constraints(withVisualFormat: format,
-                                                        options: NSLayoutConstraint.FormatOptions(),
-                                                        metrics: nil,
-                                                        views: viewsDictionary)
-        addConstraints(constraint)
-    }
-}

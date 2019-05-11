@@ -12,11 +12,22 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Home"
+        //navigationItem.title = "Home"
+        let homeLabel = UILabel(frame: CGRect(x: 0, y: 0,
+                                              width: view.bounds.width - 32,
+                                              height: view.bounds.height))
+        homeLabel.text = "Home"
+//        homeLabel.font.withSize(30)
+//        homeLabel.adjustsFontSizeToFitWidth = false
+        homeLabel.textColor = .white
+        navigationItem.titleView = homeLabel
         
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = .white
         collectionView.register(VideoCell.self, forCellWithReuseIdentifier: "videoCell")
     }
+    
+    
+    // MARK:- Collection View Methods
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
@@ -26,18 +37,22 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath)
         
-        //cell.backgroundColor = UIColor.red
+
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 200)
+        let height = (view.bounds.width - 32) * 9 / 16
+        
+        // includes all the insets and height of subviews.
+        return CGSize(width: view.bounds.width, height: 16 + height + 68)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-
+    
 }
