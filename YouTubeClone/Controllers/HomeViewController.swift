@@ -9,6 +9,8 @@
 import UIKit
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    let menuBar = MenuBar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +26,16 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         
         collectionView.backgroundColor = .white
         collectionView.register(VideoCell.self, forCellWithReuseIdentifier: "videoCell")
+        
+        setupMenuBar()
     }
     
+    private func setupMenuBar() {
+        view.addSubview(menuBar)
+        
+        view.addConstraints(withVisualFormat: "H:|[v0]|", views: menuBar)
+        view.addConstraints(withVisualFormat: "V:|[v0(50)]", views: menuBar)
+    }
     
     // MARK:- Collection View Methods
     

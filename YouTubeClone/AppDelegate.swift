@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navController.navigationBar.barTintColor = UIColor.rbg(red: 230, green: 32, blue: 31)
         navController.navigationBar.isTranslucent = false
         navController.navigationBar.barStyle = .black
-        
+        navController.navigationBar.shadowImage = UIImage()
         window?.rootViewController = navController
         
         window?.makeKeyAndVisible()
