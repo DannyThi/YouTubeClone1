@@ -17,6 +17,7 @@
 		30858D2C2287EA5400F9639C /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30858D2B2287EA5400F9639C /* MenuBar.swift */; };
 		30858D2E22883ABC00F9639C /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30858D2D22883ABC00F9639C /* BaseCell.swift */; };
 		30858D3022883AFA00F9639C /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30858D2F22883AFA00F9639C /* MenuCell.swift */; };
+		30858D7F228D52A800F9639C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30858D7E228D52A800F9639C /* Video.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		30858D2B2287EA5400F9639C /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		30858D2D22883ABC00F9639C /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		30858D2F22883AFA00F9639C /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		30858D7E228D52A800F9639C /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		30858CEF2281772A00F9639C /* YouTubeClone */ = {
 			isa = PBXGroup;
 			children = (
+				30858D7D228D529100F9639C /* Models */,
 				30858D292286D9C100F9639C /* Views */,
 				30858D2A2286D9CD00F9639C /* Controllers */,
 				30858D282286D9B000F9639C /* Extentions */,
@@ -101,6 +104,14 @@
 				30858CF22281772A00F9639C /* HomeViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		30858D7D228D529100F9639C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				30858D7E228D52A800F9639C /* Video.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +190,7 @@
 				30858CF12281772A00F9639C /* AppDelegate.swift in Sources */,
 				30858D032281B3CD00F9639C /* VideoCell.swift in Sources */,
 				30858D272286D9A800F9639C /* Extensions.swift in Sources */,
+				30858D7F228D52A800F9639C /* Video.swift in Sources */,
 				30858D2E22883ABC00F9639C /* BaseCell.swift in Sources */,
 				30858D2C2287EA5400F9639C /* MenuBar.swift in Sources */,
 			);

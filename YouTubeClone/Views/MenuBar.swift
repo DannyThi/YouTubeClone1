@@ -31,15 +31,8 @@ class MenuBar: UIView, UICollectionViewDelegate,
         addSubview(collectionView)
         addConstraints(withVisualFormat: "H:|[v0]|", views: collectionView)
         addConstraints(withVisualFormat: "V:|[v0]|", views: collectionView)
-        
-        collectionView.allowsSelection = true
-
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? MenuCell {

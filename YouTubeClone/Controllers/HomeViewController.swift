@@ -15,31 +15,81 @@ struct Constants {
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    let menuBar = MenuBar()
+    private let menuBar = MenuBar()
+    
+    // Generate some temporary videos
+    
+//    private var videos: [Video] = {
+//
+//
+//    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //navigationItem.title = "Home"
-        let homeLabel = UILabel(frame: CGRect(x: 0, y: 0,
-                                              width: view.bounds.width - 32,
-                                              height: view.bounds.height))
-        homeLabel.text = "Home"
-//        homeLabel.font.withSize(30)
-//        homeLabel.adjustsFontSizeToFitWidth = false
-        homeLabel.textColor = .white
-        navigationItem.titleView = homeLabel
         
-        collectionView.backgroundColor = .white
-        collectionView.register(VideoCell.self, forCellWithReuseIdentifier: "videoCell")
-        
+        setupViewController()
         setupMenuBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // Preselects the first item in the MenuBar
         let indexPath = IndexPath(item: 0, section: 0)
         menuBar.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
         menuBar.collectionView(menuBar.collectionView, didSelectItemAt: indexPath)
+    }
+    
+    
+
+    
+    // MARK:- Collection View Methods
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath)
+        
+
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = (view.bounds.width - 32) * 9 / 16
+        // includes all the insets and height of subviews.
+        return CGSize(width: view.bounds.width, height: 16 + height + 68)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    // MARK:- Setup code
+    
+    private func setupViewController() {
+        let homeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.width - 32, height: view.bounds.height))
+        homeLabel.text = "Home"
+        
+        // TODO: Change the fontsize of the homeLabel
+        
+        homeLabel.textColor = .white
+        navigationItem.titleView = homeLabel
+        
+        let searchIconImage = UIImage(named: "search_icon")?.withRenderingMode(.alwaysOriginal)
+        let searchIcon = UIBarButtonItem(image: searchIconImage, style: .plain, target: self, action: #selector(handleSearch))
+        
+        let moreIconImage = UIImage(named: "nav_more_icon")?.withRenderingMode(.alwaysOriginal)
+        let moreIcon = UIBarButtonItem(image: moreIconImage, style: .plain, target: self, action: #selector(handleMore))
+        
+        navigationItem.rightBarButtonItems = [moreIcon, searchIcon]
+        
+        collectionView.backgroundColor = .white
+        collectionView.register(VideoCell.self, forCellWithReuseIdentifier: "videoCell")
     }
     
     private func setupMenuBar() {
@@ -49,32 +99,12 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         view.addConstraints(withVisualFormat: "V:|[v0(50)]", views: menuBar)
     }
     
-    // MARK:- Collection View Methods
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+    @objc private func handleSearch() {
+        print("Search")
     }
     
-    override func collectionView(_ collectionView: UICollectionView,
-                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath)
-        
-
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = (view.bounds.width - 32) * 9 / 16
-        
-        // includes all the insets and height of subviews.
-        return CGSize(width: view.bounds.width, height: 16 + height + 68)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+    @objc private func handleMore() {
+        print("More!")
     }
     
 }
