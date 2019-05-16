@@ -12,17 +12,17 @@ class MenuCell: BaseCell {
     
     let imageView = UIImageView()
     
-    override var isHighlighted: Bool {
-        didSet {
-            imageView.tintColor = isHighlighted ? UIColor.white : Constants.itemDeselectedColor
-        }
-    }
+//    override var isHighlighted: Bool {
+//        didSet {
+//            imageView.tintColor = isHighlighted ? UIColor.white : Constants.itemDeselectedColor
+//        }
+//    }
     
-    override var isSelected: Bool {
-        didSet {
-            imageView.tintColor = isSelected ? UIColor.white : Constants.itemDeselectedColor
-        }
-    }
+//    override var isSelected: Bool {
+//        didSet {
+//            imageView.tintColor = isSelected ? UIColor.white : Constants.itemDeselectedColor
+//        }
+//    }
     
     override func setupViews() {
         addSubview(imageView)

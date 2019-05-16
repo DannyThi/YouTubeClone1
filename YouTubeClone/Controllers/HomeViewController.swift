@@ -35,6 +35,13 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         setupMenuBar()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let indexPath = IndexPath(item: 0, section: 0)
+        menuBar.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+        menuBar.collectionView(menuBar.collectionView, didSelectItemAt: indexPath)
+    }
+    
     private func setupMenuBar() {
         view.addSubview(menuBar)
         

@@ -22,7 +22,7 @@ class MenuBar: UIView, UICollectionViewDelegate,
         collectionView.register(MenuCell.self, forCellWithReuseIdentifier: "menuCell")
         collectionView.delegate = self
         collectionView.dataSource = self
-
+        //collectionView.allowsSelection = true
 
         setupViews()
     }
@@ -32,10 +32,30 @@ class MenuBar: UIView, UICollectionViewDelegate,
         addConstraints(withVisualFormat: "H:|[v0]|", views: collectionView)
         addConstraints(withVisualFormat: "V:|[v0]|", views: collectionView)
         
-        let selectedPath = IndexPath(item: 0, section: 0)
-        collectionView.selectItem(at: selectedPath, animated: false, scrollPosition: [])
+        collectionView.allowsSelection = true
+
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? MenuCell {
+            toggleIconColor(forCell: cell)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? MenuCell {
+            toggleIconColor(forCell: cell)
+        }
+    }
+    
+    private func toggleIconColor(forCell cell: MenuCell) {
+        cell.imageView.tintColor = cell.isSelected ? UIColor.white : Constants.itemDeselectedColor
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
@@ -47,6 +67,7 @@ class MenuBar: UIView, UICollectionViewDelegate,
         }
         cell.imageView.image = UIImage(named: menuItems[indexPath.item])?.withRenderingMode(.alwaysTemplate)
         cell.imageView.tintColor = Constants.itemDeselectedColor
+
         return cell
     }
     
