@@ -8,6 +8,11 @@
 
 import UIKit
 
+struct Constants {
+    static let youtubeRed = UIColor.rbg(red: 230, green: 32, blue: 31)
+    static let itemDeselectedColor = UIColor.rbg(red: 91, green: 14, blue: 13)
+}
+
 extension UIView {
     func addConstraints(withVisualFormat format: String, views: UIView...) {
         

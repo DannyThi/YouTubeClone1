@@ -8,12 +8,9 @@
 
 import UIKit
 
-struct Constants {
-    static let youtubeRed = UIColor.rbg(red: 230, green: 32, blue: 31)
-    static let itemDeselectedColor = UIColor.rbg(red: 91, green: 14, blue: 13)
-}
-
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    // MARK: - Properties
     
     private let menuBar = MenuBar()
     
@@ -24,7 +21,10 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 //
 //    }()
     
-
+    
+    
+    // MARK:- View Controller Lifecycle methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
