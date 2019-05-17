@@ -16,10 +16,30 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     // Generate some temporary videos
     
-//    private var videos: [Video] = {
-//
-//
-//    }()
+    private var videos: [Video] = {
+        let kanyeChannel = Channel(name: "Kanye West", profileImageName: "kayne_profile")
+        let taylorChannel = Channel(name: "Taylor Swift", profileImageName: "taylor_swift_profile")
+        
+        let video0 = Video(title: "Bad blood - feat. some guy",
+                           subtitle: "This is some random text.",
+                           thumbnailImageName: "taylor_swift_bad_blood",
+                           channel: taylorChannel)
+        video0.numberOfViews = 5789529852807
+        
+        let video1 = Video(title: "Blank Space - ???",
+                           subtitle: "This is some random text.",
+                           thumbnailImageName: "taylor_swift_blank_space",
+                           channel: taylorChannel)
+        video1.numberOfViews = 509275053
+        
+        let video2 = Video(title: "Some Random Title that looks cool",
+                           subtitle: "This is some random text.",
+                           thumbnailImageName: "taylor_swift_blank_space",
+                           channel: kanyeChannel)
+        video2.numberOfViews = 94758292444
+        
+        return [video0, video1, video2]
+    }()
     
     
     
@@ -47,13 +67,16 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     // MARK:- Collection View Methods
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return videos.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath) as? VideoCell else {
+            fatalError("Cannot dequeue menu cell")
+        }
         
-
+        cell.video = videos[indexPath.item]
+        
         return cell
     }
     
@@ -104,7 +127,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     @objc private func handleMore() {
-        print("More!")
+        print("More")
     }
     
 }

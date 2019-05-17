@@ -11,7 +11,7 @@ import UIKit
 class MenuCell: BaseCell {
     
     let imageView = UIImageView()
-    
+
 //    override var isHighlighted: Bool {
 //        didSet {
 //            imageView.tintColor = isHighlighted ? UIColor.white : Constants.itemDeselectedColor

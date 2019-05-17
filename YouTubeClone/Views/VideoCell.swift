@@ -10,7 +10,19 @@ import UIKit
 
 class VideoCell: BaseCell {
     
-    let thumbnailImageView: UIImageView = {
+    var video: Video! {
+        didSet {
+            titleLabel.text = video.title
+            thumbnailImageView.image = UIImage(named: video.thumbnailImageName)
+            userProfileImageView.image = UIImage(named: video.channel?.profileImageName ?? "")
+            let formattedViewsText = NumberFormatter.localizedString(from: video.numberOfViews, number: .decimal)
+            subtitleTextView.text = ("\(video.subtitle!) - \(formattedViewsText) views. ~ Uploaded: \(video.dateUploaded) ~")
+        }
+    }
+    
+    
+    
+    private let thumbnailImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "taylor_swift_blank_space")
         view.clipsToBounds = true
@@ -18,15 +30,7 @@ class VideoCell: BaseCell {
         return view
     }()
     
-    let userProfileImageView: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "taylor_swift_profile")
-        view.layer.cornerRadius = 22 // this is instantiated so we cannot use view.bounds.width / 2 yet.
-        view.layer.masksToBounds = true
-        return view
-    }()
-    
-    let titleLabel: UILabel = {
+     private let titleLabel: UILabel = {
         let view = UILabel()
         //view.backgroundColor = UIColor.purple
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +38,7 @@ class VideoCell: BaseCell {
         return view
     }()
     
-    let subtitleTextView: UITextView = {
+    private let subtitleTextView: UITextView = {
         let view = UITextView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.text = "Subtitle text goes here. Over 9000 views. Released: 6 years ago."
@@ -44,7 +48,15 @@ class VideoCell: BaseCell {
         return view
     }()
     
-    let seperatorView: UIView = {
+    private let userProfileImageView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "taylor_swift_profile")
+        view.layer.cornerRadius = 22 // this is instantiated so we cannot use view.bounds.width / 2 yet.
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
+    private let seperatorView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
         
