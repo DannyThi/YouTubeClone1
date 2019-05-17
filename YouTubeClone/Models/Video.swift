@@ -38,12 +38,4 @@ class Video {
     }
 }
 
-class Channel {
-    var name: String!
-    var profileImageName: String!
-    
-    init(name: String, profileImageName: String) {
-        self.name = name
-        self.profileImageName = profileImageName
-    }
-}
+
