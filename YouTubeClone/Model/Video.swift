@@ -25,7 +25,7 @@ class Video {
         }
     }
     
-    private(set) var channel: Channel? // temp until channel has been set up
+    private(set) var channel: Channel!
     
     init(title: String, subtitle: String, thumbnailImageName: String, channel: Channel) {
         self.title = title

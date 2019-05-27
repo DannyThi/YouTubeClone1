@@ -19,6 +19,7 @@
 		30858D3022883AFA00F9639C /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30858D2F22883AFA00F9639C /* MenuCell.swift */; };
 		30858D7F228D52A800F9639C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30858D7E228D52A800F9639C /* Video.swift */; };
 		30858D81228E77C000F9639C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30858D80228E77C000F9639C /* Channel.swift */; };
+		30A152E2229A9E66003DFCE0 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A152E1229A9E66003DFCE0 /* Home.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		30858D2F22883AFA00F9639C /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		30858D7E228D52A800F9639C /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		30858D80228E77C000F9639C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		30A152E1229A9E66003DFCE0 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +70,7 @@
 		30858CEF2281772A00F9639C /* YouTubeClone */ = {
 			isa = PBXGroup;
 			children = (
-				30858D7D228D529100F9639C /* Models */,
+				30858D7D228D529100F9639C /* Model */,
 				30858D292286D9C100F9639C /* Views */,
 				30858D2A2286D9CD00F9639C /* Controllers */,
 				30858D282286D9B000F9639C /* Extentions */,
@@ -108,13 +110,14 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		30858D7D228D529100F9639C /* Models */ = {
+		30858D7D228D529100F9639C /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				30858D7E228D52A800F9639C /* Video.swift */,
 				30858D80228E77C000F9639C /* Channel.swift */,
+				30A152E1229A9E66003DFCE0 /* Home.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +193,7 @@
 			files = (
 				30858D3022883AFA00F9639C /* MenuCell.swift in Sources */,
 				30858CF32281772A00F9639C /* HomeViewController.swift in Sources */,
+				30A152E2229A9E66003DFCE0 /* Home.swift in Sources */,
 				30858CF12281772A00F9639C /* AppDelegate.swift in Sources */,
 				30858D032281B3CD00F9639C /* VideoCell.swift in Sources */,
 				30858D272286D9A800F9639C /* Extensions.swift in Sources */,

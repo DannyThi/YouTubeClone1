@@ -14,41 +14,18 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     private let menuBar = MenuBar()
     
-    // Generate some temporary videos
-    
-    private var videos: [Video] = {
-        let kanyeChannel = Channel(name: "Kanye West", profileImageName: "kayne_profile")
-        let taylorChannel = Channel(name: "Taylor Swift", profileImageName: "taylor_swift_profile")
-        
-        let video0 = Video(title: "Bad blood - feat. some guy",
-                           subtitle: "This is some random text.",
-                           thumbnailImageName: "taylor_swift_bad_blood",
-                           channel: taylorChannel)
-        video0.numberOfViews = 5789529852807
-        
-        let video1 = Video(title: "Blank Space - ???",
-                           subtitle: "This is some random text.",
-                           thumbnailImageName: "taylor_swift_blank_space",
-                           channel: taylorChannel)
-        video1.numberOfViews = 509275053
-        
-        let video2 = Video(title: "Some Random Title that looks cool",
-                           subtitle: "This is some random text.",
-                           thumbnailImageName: "taylor_swift_blank_space",
-                           channel: kanyeChannel)
-        video2.numberOfViews = 94758292444
-        
-        return [video0, video1, video2]
-    }()
-    
-    
+    // Model
+    private let home = Home()
     
     // MARK:- View Controller Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        home.fetchVideos()
+        
         setupViewController()
+        setupNotificationObservers()
         setupMenuBar()
     }
     
@@ -62,12 +39,20 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     
-
+    @objc private func updateUI() {
+        print("updateUI")
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
+    
+    
+    
     
     // MARK:- Collection View Methods
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return videos.count
+        return home.videos.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -75,7 +60,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             fatalError("Cannot dequeue menu cell")
         }
         
-        cell.video = videos[indexPath.item]
+        cell.video = home.videos[indexPath.item]
         
         return cell
     }
@@ -113,6 +98,10 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         
         collectionView.backgroundColor = .white
         collectionView.register(VideoCell.self, forCellWithReuseIdentifier: "videoCell")
+    }
+    
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: .dataRecieved, object: nil)
     }
     
     private func setupMenuBar() {

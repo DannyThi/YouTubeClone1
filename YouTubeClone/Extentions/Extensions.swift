@@ -36,3 +36,20 @@ extension UIColor {
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
 }
+
+extension UIImageView {
+    func loadImageUsingURLString(string: String) {
+        let url = URL(string: string)!
+        
+        let fetch = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+                return
+            }
+            DispatchQueue.main.async {
+                self.image = UIImage(data: data!)
+            }
+        }
+        fetch.resume()
+    }
+}

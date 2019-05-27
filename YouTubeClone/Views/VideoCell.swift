@@ -13,13 +13,12 @@ class VideoCell: BaseCell {
     var video: Video! {
         didSet {
             titleLabel.text = video.title
-            thumbnailImageView.image = UIImage(named: video.thumbnailImageName)
-            userProfileImageView.image = UIImage(named: video.channel?.profileImageName ?? "")
+            thumbnailImageView.loadImageUsingURLString(string: video.thumbnailImageName)
+            userProfileImageView.loadImageUsingURLString(string: video.channel.profileImageName)
             let formattedViewsText = NumberFormatter.localizedString(from: video.numberOfViews, number: .decimal)
             subtitleTextView.text = ("\(video.subtitle!) - \(formattedViewsText) views. ~ Uploaded: \(video.dateUploaded) ~")
         }
     }
-    
     
     
     private let thumbnailImageView: UIImageView = {
@@ -53,6 +52,7 @@ class VideoCell: BaseCell {
         view.image = UIImage(named: "taylor_swift_profile")
         view.layer.cornerRadius = 22 // this is instantiated so we cannot use view.bounds.width / 2 yet.
         view.layer.masksToBounds = true
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
