@@ -38,7 +38,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         menuBar.collectionView(menuBar.collectionView, didSelectItemAt: indexPath)
     }
     
-    
     @objc private func updateUI() {
         print("updateUI")
         DispatchQueue.main.async { [weak self] in

@@ -43,6 +43,9 @@ class Home {
                             self.videos.append(video)
                         }
                         
+                        
+                        // we should fire off another request for image data
+                        
                         NotificationCenter.default.post(name:.dataRecieved, object: self)
                     }
                 } catch let jsonError {

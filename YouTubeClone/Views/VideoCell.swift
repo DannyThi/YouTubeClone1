@@ -13,8 +13,14 @@ class VideoCell: BaseCell {
     var video: Video! {
         didSet {
             titleLabel.text = video.title
+            
+            // this is really bad because we definately do not want to make a network call in the view.
+            // the network call should be in the model to get the data and the view should intererate that data
+            // into a uiimage view.
             thumbnailImageView.loadImageUsingURLString(string: video.thumbnailImageName)
             userProfileImageView.loadImageUsingURLString(string: video.channel.profileImageName)
+            
+            
             let formattedViewsText = NumberFormatter.localizedString(from: video.numberOfViews, number: .decimal)
             subtitleTextView.text = ("\(video.subtitle!) - \(formattedViewsText) views. ~ Uploaded: \(video.dateUploaded) ~")
         }
