@@ -8,12 +8,20 @@
 
 import Foundation
 
-class Channel {
+class Channel: ObjectWithImageData {
     var name: String!
-    var profileImageName: String!
+    private(set) var profileImageURL: String! {
+        get {
+            return imageURL
+        }
+        set {
+            imageURL = newValue
+        }
+    }
     
-    init(name: String, profileImageName: String) {
+    init(name: String, profileImageURL: String) {
+        super.init()
         self.name = name
-        self.profileImageName = profileImageName
+        self.profileImageURL = profileImageURL
     }
 }

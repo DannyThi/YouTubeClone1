@@ -33,19 +33,20 @@ class Home {
                             
                             let channelDictionary = dictionary["channel"] as! [String : AnyObject]
                             let channel = Channel(name: channelDictionary["name"] as! String,
-                                                  profileImageName: channelDictionary["profile_image_name"] as! String)
+                                                  profileImageURL: channelDictionary["profile_image_name"] as! String)
                             
                             let video = Video(title: dictionary["title"] as! String,
                                               subtitle: "",
-                                              thumbnailImageName: dictionary["thumbnail_image_name"] as! String,
+                                              thumbnailImageURL: dictionary["thumbnail_image_name"] as! String,
                                               channel: channel)
+                            
+                            // needs work
+                            channel.getImageData()
+                            video.getImageData()
                             
                             self.videos.append(video)
                         }
-                        
-                        
-                        // we should fire off another request for image data
-                        
+
                         NotificationCenter.default.post(name:.dataRecieved, object: self)
                     }
                 } catch let jsonError {
