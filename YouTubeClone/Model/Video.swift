@@ -8,7 +8,6 @@
 
 import Foundation
 
-// this is bad!
 var imageCache = NSCache<NSString, AnyObject>()
 
 class Video: ObjectWithImageData {
@@ -17,7 +16,7 @@ class Video: ObjectWithImageData {
     private(set) var subtitle: String!
     private(set) var thumbnailImageURL: String {
         get {
-            return imageURL
+            return imageURL ?? ""
         }
         set {
             imageURL = newValue
@@ -52,27 +51,26 @@ class Video: ObjectWithImageData {
 
 class ObjectWithImageData {
 
-    open var imageURL: String!
-
-    func getImageData() {
-        let url = URL(string: imageURL)!
-        let fetch = URLSession.shared.dataTask(with: url) {
-            (data, response, error) in
-            
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            
-            DispatchQueue.main.async {
-                [weak self] in
-                guard let self = self else { return }
-                imageCache.setObject(data as AnyObject, forKey: NSString(string: self.imageURL))
-                print("Image: [\(String(describing: self.imageURL))] downloaded")
-                NotificationCenter.default.post(name: Notification.Name(rawValue: self.imageURL), object: self)
+    open var imageURL: String? {
+        didSet {
+            if imageCache.object(forKey: NSString(string: imageURL!)) == nil {
+                downloadImageData()
             }
         }
-        fetch.resume()
+    }
+    
+    private func downloadImageData() {
+        guard let url = URL(string: imageURL!) else { return }
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            
+            guard error == nil else { print(error!.localizedDescription); return }
+            guard let data = data else { return }
+            
+            imageCache.setObject(data as AnyObject, forKey: NSString(string: self.imageURL!))
+            NotificationCenter.default.post(name: Notification.Name.imageRecieved, object: self)
+ 
+        }.resume()
     }
 }
 

@@ -11,22 +11,19 @@ import UIKit
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Properties
-    
     private let menuBar = MenuBar()
-    
-    // Model
     private let home = Home()
+    
     
     // MARK:- View Controller Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        home.fetchVideos()
-        
+        home.fetchVideoData()
         setupViewController()
         setupNotificationObservers()
         setupMenuBar()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,11 +36,11 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     @objc private func updateUI() {
-        print("updateUI")
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
         }
     }
+    
     
     
     

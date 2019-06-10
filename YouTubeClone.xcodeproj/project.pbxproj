@@ -70,14 +70,12 @@
 		30858CEF2281772A00F9639C /* YouTubeClone */ = {
 			isa = PBXGroup;
 			children = (
+				30858CF42281772A00F9639C /* Main.storyboard */,
+				974776B022AE71EE00485CAD /* Home */,
 				30858D7D228D529100F9639C /* Model */,
 				30858D292286D9C100F9639C /* Views */,
-				30858D2A2286D9CD00F9639C /* Controllers */,
 				30858D282286D9B000F9639C /* Extentions */,
-				30858CF02281772A00F9639C /* AppDelegate.swift */,
-				30858CF42281772A00F9639C /* Main.storyboard */,
-				30858CF72281772B00F9639C /* Assets.xcassets */,
-				30858CF92281772B00F9639C /* LaunchScreen.storyboard */,
+				974776B122AE721700485CAD /* Supporting Files */,
 				30858CFC2281772B00F9639C /* Info.plist */,
 			);
 			path = YouTubeClone;
@@ -102,22 +100,32 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		30858D2A2286D9CD00F9639C /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				30858CF22281772A00F9639C /* HomeViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		30858D7D228D529100F9639C /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				30858D7E228D52A800F9639C /* Video.swift */,
 				30858D80228E77C000F9639C /* Channel.swift */,
-				30A152E1229A9E66003DFCE0 /* Home.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		974776B022AE71EE00485CAD /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				30858CF22281772A00F9639C /* HomeViewController.swift */,
+				30A152E1229A9E66003DFCE0 /* Home.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		974776B122AE721700485CAD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				30858CF92281772B00F9639C /* LaunchScreen.storyboard */,
+				30858CF02281772A00F9639C /* AppDelegate.swift */,
+				30858CF72281772B00F9639C /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

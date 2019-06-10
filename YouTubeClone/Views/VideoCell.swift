@@ -16,8 +16,12 @@ class VideoCell: BaseCell {
             let formattedViewsText = NumberFormatter.localizedString(from: video.numberOfViews, number: .decimal)
             subtitleTextView.text = ("\(video.subtitle!) - \(formattedViewsText) views. ~ Uploaded: \(video.dateUploaded) ~")
             
-            NotificationCenter.default.addObserver(self, selector: #selector(updateImages), name: Notification.Name(rawValue: video.thumbnailImageURL), object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(updateImages), name: Notification.Name(rawValue: video.channel.profileImageURL), object: nil)
+            let cacheString = NSString(string: video.thumbnailImageURL)
+            if let imageData = imageCache.object(forKey: cacheString) as? Data {
+                thumbnailImageView.image = UIImage(data: imageData)
+            } else {
+                print("Error loading image data in thumbnailImageView")
+            }
         }
     }
     
