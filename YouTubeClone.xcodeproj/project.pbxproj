@@ -20,6 +20,7 @@
 		30858D7F228D52A800F9639C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30858D7E228D52A800F9639C /* Video.swift */; };
 		30858D81228E77C000F9639C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30858D80228E77C000F9639C /* Channel.swift */; };
 		30A152E2229A9E66003DFCE0 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A152E1229A9E66003DFCE0 /* Home.swift */; };
+		972B988422B21369004E195E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972B988322B21369004E195E /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		30858D7E228D52A800F9639C /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		30858D80228E77C000F9639C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		30A152E1229A9E66003DFCE0 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		972B988322B21369004E195E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				30858D262286D9A800F9639C /* Extensions.swift */,
+				972B988322B21369004E195E /* NetworkManager.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				30858CF32281772A00F9639C /* HomeViewController.swift in Sources */,
 				30A152E2229A9E66003DFCE0 /* Home.swift in Sources */,
 				30858CF12281772A00F9639C /* AppDelegate.swift in Sources */,
+				972B988422B21369004E195E /* NetworkManager.swift in Sources */,
 				30858D032281B3CD00F9639C /* VideoCell.swift in Sources */,
 				30858D272286D9A800F9639C /* Extensions.swift in Sources */,
 				30858D7F228D52A800F9639C /* Video.swift in Sources */,

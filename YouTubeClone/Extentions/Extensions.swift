@@ -13,6 +13,11 @@ struct Constants {
     static let itemDeselectedColor = UIColor.rbg(red: 91, green: 14, blue: 13)
 }
 
+extension Notification.Name {
+    static let videoDataRecieved = Notification.Name("videoDataReceived")
+    static let imageRecieved = Notification.Name("imageRecieved")
+}
+
 extension UIView {
     func addConstraints(withVisualFormat format: String, views: UIView...) {
         
@@ -39,17 +44,17 @@ extension UIColor {
 
 extension UIImageView {
     func loadImageUsingURLString(string: String) {
-        let url = URL(string: string)!
+        guard let url = URL(string: string) else { return }
         
-        let fetch = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil {
-                print(error!.localizedDescription)
-                return
-            }
-            DispatchQueue.main.async {
-                self.image = UIImage(data: data!)
+        DispatchQueue.global().async {
+            [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
             }
         }
-        fetch.resume()
     }
 }

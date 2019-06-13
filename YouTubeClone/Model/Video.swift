@@ -8,20 +8,11 @@
 
 import Foundation
 
-var imageCache = NSCache<NSString, AnyObject>()
-
-class Video: ObjectWithImageData {
+class Video {
     
     private(set) var title: String!
     private(set) var subtitle: String!
-    private(set) var thumbnailImageURL: String {
-        get {
-            return imageURL ?? ""
-        }
-        set {
-            imageURL = newValue
-        }
-    }
+    private(set) var thumbnailImageURL: String
 
     var numberOfViews: NSNumber!
     private var uploadDate: Date!
@@ -37,7 +28,6 @@ class Video: ObjectWithImageData {
     private(set) var channel: Channel!
     
     init(title: String, subtitle: String, thumbnailImageURL: String, channel: Channel) {
-        super.init()
         self.title = title
         self.subtitle = subtitle
         self.thumbnailImageURL = thumbnailImageURL
@@ -45,32 +35,6 @@ class Video: ObjectWithImageData {
         uploadDate = Date()
         
         self.channel = channel
-    }
-}
-
-
-class ObjectWithImageData {
-
-    open var imageURL: String? {
-        didSet {
-            if imageCache.object(forKey: NSString(string: imageURL!)) == nil {
-                downloadImageData()
-            }
-        }
-    }
-    
-    private func downloadImageData() {
-        guard let url = URL(string: imageURL!) else { return }
-        URLSession.shared.dataTask(with: url) {
-            (data, response, error) in
-            
-            guard error == nil else { print(error!.localizedDescription); return }
-            guard let data = data else { return }
-            
-            imageCache.setObject(data as AnyObject, forKey: NSString(string: self.imageURL!))
-            NotificationCenter.default.post(name: Notification.Name.imageRecieved, object: self)
- 
-        }.resume()
     }
 }
 

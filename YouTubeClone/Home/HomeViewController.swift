@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Properties
@@ -19,11 +21,10 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        home.fetchVideoData()
+        NetworkManager.fetchVideoData()
         setupViewController()
         setupNotificationObservers()
         setupMenuBar()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,13 +36,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         menuBar.collectionView(menuBar.collectionView, didSelectItemAt: indexPath)
     }
     
-    @objc private func updateUI() {
-        DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
-        }
-    }
-    
-    
     
     
     
@@ -52,12 +46,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath) as? VideoCell else {
-            fatalError("Cannot dequeue menu cell")
-        }
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath) as! VideoCell
         cell.video = home.videos[indexPath.item]
-        
         return cell
     }
     
@@ -73,6 +63,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         return 0
     }
     
+    
+    
     // MARK:- Setup code
     
     private func setupViewController() {
@@ -80,7 +72,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         homeLabel.text = "Home"
         
         // TODO: Change the fontsize of the homeLabel
-        
         homeLabel.textColor = .white
         navigationItem.titleView = homeLabel
         
@@ -97,12 +88,23 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     private func setupNotificationObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: .dataRecieved, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(storeVideos), name: .videoDataRecieved, object: nil)
+    }
+    
+    @objc private func storeVideos(sender: Notification) {
+        guard let videos = sender.userInfo?["videos"] as? [Video] else { return }
+        print("HomeVC: Storing Videos")
+        home.videos = videos
+        updateUI()
+    }
+    
+    @objc private func updateUI() {
+        print("HomeVC: Updating UI.")
+        collectionView.reloadData()
     }
     
     private func setupMenuBar() {
         view.addSubview(menuBar)
-        
         view.addConstraints(withVisualFormat: "H:|[v0]|", views: menuBar)
         view.addConstraints(withVisualFormat: "V:|[v0(50)]", views: menuBar)
     }

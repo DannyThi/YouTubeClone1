@@ -17,17 +17,17 @@ class VideoCell: BaseCell {
             subtitleTextView.text = ("\(video.subtitle!) - \(formattedViewsText) views. ~ Uploaded: \(video.dateUploaded) ~")
             
             let cacheString = NSString(string: video.thumbnailImageURL)
-            if let imageData = imageCache.object(forKey: cacheString) as? Data {
-                thumbnailImageView.image = UIImage(data: imageData)
+            if let image = imageCache.object(forKey: cacheString) {
+                thumbnailImageView.image = image
             } else {
-                print("Error loading image data in thumbnailImageView")
+                print("VideoCell: No image to load")
             }
         }
     }
     
     @objc private func updateImages() {
-        thumbnailImageView.image = (imageCache.object(forKey: NSString(string: video.thumbnailImageURL)) as? UIImage)
-        userProfileImageView.image = (imageCache.object(forKey: NSString(string: video.channel.profileImageURL)) as? UIImage)
+        thumbnailImageView.image = (imageCache.object(forKey: NSString(string: video.thumbnailImageURL)))
+        userProfileImageView.image = (imageCache.object(forKey: NSString(string: video.channel.profileImageURL)))
     }
     
     
