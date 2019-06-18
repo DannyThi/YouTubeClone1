@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Properties
@@ -36,8 +35,21 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         menuBar.collectionView(menuBar.collectionView, didSelectItemAt: indexPath)
     }
     
+    // MARK:- Buttons
     
+    @objc private func handleSearch() {
+        print("Search")
+    }
     
+    @objc private func handleMore() {
+        print("More")
+        let ac = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
+        
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        present(ac, animated: true)
+    }
+
     
     // MARK:- Collection View Methods
     
@@ -62,6 +74,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
     
     
     
@@ -109,12 +122,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         view.addConstraints(withVisualFormat: "V:|[v0(50)]", views: menuBar)
     }
     
-    @objc private func handleSearch() {
-        print("Search")
-    }
-    
-    @objc private func handleMore() {
-        print("More")
-    }
+
     
 }

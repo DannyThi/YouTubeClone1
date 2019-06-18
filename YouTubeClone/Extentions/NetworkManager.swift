@@ -10,10 +10,12 @@ import UIKit
 
 var imageCache = NSCache<NSString, UIImage>()
 
-
 class NetworkManager {
     
     static let urlString = "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json"
+    
+    
+    // network manager should be generic
     
     static func fetchVideoData() {
         guard let url = URL(string: urlString) else { return }
